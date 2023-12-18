@@ -4,9 +4,9 @@
   
   
   <entry>
-    <title></title>
-    <link href="/p/undefined.html"/>
-    <url>/p/undefined.html</url>
+    <title>PowerShell启动时自动配置http代理</title>
+    <link href="/p/73393516.html"/>
+    <url>/p/73393516.html</url>
     
     <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>有时候我们经常需要在Windows Terminal，powershell内使用http代理来拉去GitHub代码、软件包等等，每次都需要手动配置很麻烦。其实我们可以使用.ps1脚本来启动。</p><blockquote><p> <a href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_scripts?view=powershell-7.4">https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_scripts?view=powershell-7.4</a></p></blockquote><h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><p>文本编辑proxy.ps1文件写入一下内容：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs ps1"># 设置代理地址和端口<br>$env:HTTP_PROXY = &quot;http://127.0.0.1:10809&quot;<br>$env:HTTPS_PROXY = &quot;http://127.0.0.1:10809&quot;<br><br># 显示设置的环境变量<br>Write-Host &quot;HTTP_PROXY 设置为: $($env:HTTP_PROXY)&quot;<br>Write-Host &quot;HTTPS_PROXY 设置为: $($env:HTTPS_PROXY)&quot;<br><br><br>#powershell #powershell启动<br>wt     #Windows terminal启动<br></code></pre></td></tr></table></figure><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>利用脚本在启动powershell前配置环境变量。启动的程序会继承环境变量。</p>]]></content>
     
