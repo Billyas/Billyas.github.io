@@ -1,0 +1,507 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/box.svg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Billyme">
+  <meta name="author" content="Billyme">
+  <meta name="keywords" content="">
+  
+    <meta name="google-site-verification" content="M1pjYL5H4acOcAhF75kYnj88TUffEUhKN5uQ1z-jHIk" /><meta name="msvalidate.01" content="094ECD52C4255ECD057DE8C73671632D" /><meta name="baidu-site-verification" content="code-CvaeMLX0t0" />
+  
+  <title>Vultr变更流量统计规则及Vultr2T免费流量解析 - Billyme的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"billyas.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Billyme</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Vultr变更流量统计规则及Vultr2T免费流量解析">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2023-01-10 20:34" pubdate>
+        2023年1月10日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Vultr变更流量统计规则及Vultr2T免费流量解析</h1>
+            
+            <div class="markdown-body">
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Vultr最近宣布为全球用户提供2T免费基础流量同时变更流量统计规则</p>
+<h2 id="新闻背景"><a href="#新闻背景" class="headerlink" title="新闻背景"></a>新闻背景</h2><blockquote>
+<p>  今天我们宣布了新的全球带宽定价计划。这些变化将使高性能云计算对世界各地的用户来说更容易&gt;获得和负担得起。以下是亮点：</p>
+</blockquote>
+<blockquote>
+<p>  <strong>每个 Vultr 客户现在每个月都会收到 2 TB (2 TB) 的免费出站数据传输，此外每个订阅都包含传输。</strong></p>
+<ul>
+<li>数据入口现在将是免费的。</li>
+<li>所有客户都将收到跨所有实例和地点的全球账户级转账汇集。</li>
+<li>Vultr 现在将提供降低的单一全球出口超额率，每 GB 仅为 0.01 美元。</li>
+</ul>
+<p>  <strong>与 Vultr 现有的已发布政策一致，所有带宽分配将在每个月的过程中按小时累积。</strong></p>
+</blockquote>
+<blockquote>
+<p>在众多云计算提供商纷纷选择涨价之际，Vultr却在降低带宽价格。Vultr 致力于为世界各地的企业和开发人员提供任何云计算平台中性价比最高的产品。我们寻求通过在全球更多地方开设新的云数据中心位置来实现这一目标，让更多企业和人们更接近负担得起的高性能云计算。我们还坚持不懈地专注于为我们的客户提供更高的价值并简化他们的云体验。正是本着这种精神，今天我们正在从根本上改进我们的定价模型，以简化全球开发人员、IT 运营和财务团队的带宽消耗。在众多云计算提供商纷纷选择涨价之际，Vultr却在降低带宽价格。Vultr 致力于为世界各地的企业和开发人员提供任何云计算平台中性价比最高的产品。我们寻求通过在全球更多地方开设新的云数据中心位置来实现这一目标，让更多企业和人们更接近负担得起的高性能云计算。我们还坚持不懈地专注于为我们的客户提供更高的价值并简化他们的云体验。正是本着这种精神，今天我们正在从根本上改进我们的定价模型，以简化全球开发人员、IT 运营和财务团队的带宽消耗。</p>
+</blockquote>
+<blockquote>
+<p>云计算用户面临的最重大挑战之一是不必要的复杂性、成本和计费的不可预测性。IT 团队的任务是提高运营效率、加速数字创新以及管理现有基础架构和应用程序，同时还要面临紧缩的预算。由于不可预见的成本和带宽超额费用导致的账单意外可能会对 IT 规划和投资产生超出预算的影响。在 Vultr，我们认为传统的云计算定价过于复杂，加载了不必要的费用，而且设计难以控制。我们理解为什么该模型不适用于大多数用户，并且我们已经使我们自己的定价计划更加简单和更可预测。</p>
+</blockquote>
+<p>原文摘自<a target="_blank" rel="noopener" href="https://www.vultr.com/news/Vultr-Announces-Reduced-Bandwidth-Pricing-2-Tb-Of-Free-Monthly-Egress-Free-Ingress-And-Global-Pooling/" title="【Vultr官网】">【Vultr官网】</a> ，谷歌机器翻译。</p>
+<h2 id="实际分析"><a href="#实际分析" class="headerlink" title="实际分析"></a>实际分析</h2><h3 id="2T基础流量"><a href="#2T基础流量" class="headerlink" title="2T基础流量"></a>2T基础流量</h3><ul>
+<li><p>我们通过Vultr官网进行VPS价格对比发现，实时上2T基础流量是对于用户而言的，服务器实例中 <strong>High Performance（高性能）VPS</strong> 基础流量是2T，其他Regular Performance(常规共享型) VPS依然是低于2T流量<br><img src="/p/a8a2e961/2028247-20230110154932703-161314767.png" srcset="/img/loading.gif" lazyload alt="image"><br><img src="/p/a8a2e961/2028247-20230110155119212-162297952.png" srcset="/img/loading.gif" lazyload alt="image"><br><img src="/p/a8a2e961/2028247-20230110155335951-36147999.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<hr>
+<p><strong><code>2T</code>免费流量是用户级别的，2T流量以内<code>不收取费用</code></strong></p>
+<p><img src="/p/a8a2e961/2028247-20230110185322014-204278939.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p> <strong>事实上，Vultr <code>2T</code> 基础流量是基于每个用户的， 流量是在账单中分配的，用户的全部流量是<code>2T+实例流量</code>，我的实例流量<code>0.5T+2T=2.5T</code></strong></p>
+</li>
+</ul>
+<hr>
+<h3 id="流量统计规则变更"><a href="#流量统计规则变更" class="headerlink" title="流量统计规则变更"></a>流量统计规则变更</h3><ul>
+<li><p>官方公告中的 <strong>“Vultr 现有的已发布政策一致，所有带宽分配将在每个月的过程中按小时累积”</strong>, 这个规则覆盖所有用户，自2023年起所有带宽按照小时累计计算。如何理解呢？我们来看看官方的介绍。<br><img src="/p/a8a2e961/2028247-20230110160036565-2137016292.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<blockquote>
+<p> <strong>您的门户显示的带宽可能少于计划的总带宽，因为总带宽是在 672 小时的每月计费周期内按比例分配的。这将重复每个计费周期。</strong></p>
+<p> 例如：<br> 具有 <code>2000GB</code> 每月限额的实例将在其活动的每个小时内获得 <code>3GB</code> 的带宽 <code>(2000GB/672hr)</code>。这显示为可用带宽，格式为：<code>xGB</code>（已用）<code>/xGB</code>（可用）。</p>
+<ul>
+<li>在部署时，它将是：xGB（已用）/3GB（可用）。</li>
+<li>活跃 3 小时后，它将是：xGB（已用）/9GB（可用）。</li>
+<li>活跃 672 小时后，它将是：xGB（已用）/2000GB（可用）。</li>
+</ul>
+<p> 这将重复每个计费周期。</p>
+</blockquote>
+<p>从新的计费方式可以看出，2T的基础流量是按照小时分配的，<strong>每个月初始的可用流量按照每小时3G累计计算，月初反而更容易将带宽耗尽。随着时间的推移，月底反而流量越多</strong>。Vultr新的流量计算规则有效解决短时间高发流量的发生，但是也暴露出一定问题，用户的每月流量不是全部可用的，仅仅是按时分配的，是否在一定程度上侵犯用户的权益呢？</p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​    Vultr确实是给用户带来实惠，每个账户新增的2T免费流量极大减少用户的成本</p>
+<p> <a target="_blank" rel="noopener" href="https://www.vultr.com/?ref=9334530-8H">Vultr官网传送门</a></p>
+<p> <a target="_blank" rel="noopener" href="http://https//www.vultr.com/?ref=9334530-8H"><img src="/p/a8a2e961/2028247-20230110183814981-933827327.png" srcset="/img/loading.gif" lazyload></a></p>
+<h2 id="原创声明"><a href="#原创声明" class="headerlink" title="原创声明"></a>原创声明</h2><blockquote>
+<p>作者：Billyme (詩)</p>
+<p>博客园：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/billyme/">https://www.cnblogs.com/billyme/</a></p>
+<p>CSDN ：<a target="_blank" rel="noopener" href="https://blog.csdn.net/horizon08">https://blog.csdn.net/horizon08</a></p>
+<p>Github：<a href="https://billyas.github.io/">https://billyas.github.io</a></p>
+<p>标题：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/billyme/p/17040618.html">【VPS】Vultr变更流量统计规则及Vultr 2T免费流量解析</a></p>
+<p>本文为 <strong>Billyme</strong> 原创作品，仅发表于以上平台，<strong>不允许转载</strong></p>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/p/1098621e.html">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Windows平台下USRP_E310基础环境配置</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/p/2a56fdad.html">
+                        <span class="hidden-mobile">自建GitHub加速，优化图床质量</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"98T6Seo86MgLR2enaa4jzkqM-9Nh9j0Va","appKey":"m6gb3P43WeGCEhKwI1V5lNkb","placeholder":"说点啥","path":"window.location.pathname","avatar":"retro","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://98t6seo8.lc-cn-e1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"requiredFields":[]},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://www.cnblogs.com/billyme/" target="_blank" rel="nofollow noopener"><span>Billyme</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

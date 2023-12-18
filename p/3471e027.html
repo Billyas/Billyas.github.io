@@ -1,0 +1,564 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/box.svg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Billyme">
+  <meta name="author" content="Billyme">
+  <meta name="keywords" content="">
+  
+    <meta name="google-site-verification" content="M1pjYL5H4acOcAhF75kYnj88TUffEUhKN5uQ1z-jHIk" /><meta name="msvalidate.01" content="094ECD52C4255ECD057DE8C73671632D" /><meta name="baidu-site-verification" content="code-CvaeMLX0t0" />
+  
+  <title>集美大学校园网绑定/认证报错异常及解决方案 - Billyme的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"billyas.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Billyme</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="集美大学校园网绑定/认证报错异常及解决方案">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-03 11:59" pubdate>
+        2022年4月3日 中午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      32
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">集美大学校园网绑定/认证报错异常及解决方案</h1>
+            
+            <div class="markdown-body">
+              <p>title: 校园网绑定/认证报错异常及解决方案<br>date: 2022-04-03 08:23:46<br>tags:</p>
+<h2 id="用户不允许在本地区使用该服务"><a href="#用户不允许在本地区使用该服务" class="headerlink" title="用户不允许在本地区使用该服务"></a>用户不允许在本地区使用该服务</h2><blockquote>
+<p>解释：该上网账号不能在这里进行认证。</p>
+</blockquote>
+<p>解决方法：</p>
+<p>情况1：未开户情况下在宿舍使用网络。<br>解决方法：校园网上网账户需要开通（见上文”开户”），或者使用舍友已经开户了的上网账户。<br>情况2：在部分教学区域使用宽带服务。<br>解决方法：部分公共场所校园网仅允许使用教育网，请将服务切换为”教育网接入”。</p>
+<h2 id="用户不允许使用本服务"><a href="#用户不允许使用本服务" class="headerlink" title="用户不允许使用本服务"></a>用户不允许使用本服务</h2><blockquote>
+<p>解释：绑定了宽带但是没有开户的情况下选择宽带接入认证。</p>
+</blockquote>
+<p>解决方法：按着上文的方法开户校园网账户，或者解除绑定后绑定到有开户的校园网账户上。</p>
+<p><strong>不在认证时间段内！</strong> </p>
+<p>解释：断网了，参考上文说明。</p>
+<p>解决方法：洗洗睡，等待次日6:00通网。</p>
+<h2 id="radius-server-not-message"><a href="#radius-server-not-message" class="headerlink" title="radius server not message"></a>radius server not message</h2><blockquote>
+<p>解释：认证服务无信息。</p>
+</blockquote>
+<p>解决方法：</p>
+<p>情况1：多点击连接几次，就认证上了</p>
+<p>情况2：多次点击仍然提示</p>
+<p>用那张电信卡打10000-转人工服务 把报错告诉对方，叫对方反馈给技术人员。<br>说：你好，我是集美大学电信校园网用户，今天认证宽带的时候提示 运营商用户认证失败，失败原因是radius server not message（不会念去百度一下，大学生了），请帮我反馈给技术人员！如果问宿舍号就告诉他们留存。如果对方不认账就叫他反馈给工作人员就行了，其他不要管！<br>等电信回电话告诉解决了再尝试认证登录。</p>
+<p>情况3：多次点击认证后出现其他报错，请按下文的方法解决！</p>
+<h2 id="RADIUS-0011-The-current-number-of-connections-has-reached-the-set-number-of-connections"><a href="#RADIUS-0011-The-current-number-of-connections-has-reached-the-set-number-of-connections" class="headerlink" title="RADIUS-0011: The current number of connections has reached the set number of connections."></a>RADIUS-0011: The current number of connections has reached the set number of connections.</h2><blockquote>
+<p>解释：当前在线连接数已达到最大限制。</p>
+</blockquote>
+<p>解决方法：此问题为电信宽带专属，出现在断电恢复后重新认证时，原因是宽带账户被挂着没有下线，与上一个报错类似，用那张电信卡打10000-转人工服务<br>说：你好，我是集美大学电信校园网用户，认证提示0011错误，麻烦反馈给工程师，对方登记一下宿舍楼宿舍号即可。<br>如果部分客服不了解情况踢皮球说不归他们管就吼他们，叫他们帮忙登记下来反馈给工程师即可（实测有效）！<br>等电信回电话告诉解决了再尝试认证登录。</p>
+<h2 id="RADIUS-0017-Not-meet-the-conditions-of-PVC-bindings"><a href="#RADIUS-0017-Not-meet-the-conditions-of-PVC-bindings" class="headerlink" title="RADIUS-0017: Not meet the conditions of PVC bindings."></a>RADIUS-0017: Not meet the conditions of PVC bindings.</h2><blockquote>
+<p>解释：未符合管道绑定条件。</p>
+</blockquote>
+<p>解决方法：大部分情况下是运营商没激活宽带，请联系运营商人工客服或者去校园里的营业厅解决。或者是当初卖卡的没有给用户开通激活宽带，或者把宽带开通到其他学校去了，请携带身份证前往月明楼二楼电信营业厅将报错截图给工作人员请求处理。  RADIUS-0019: Password invalid.  解释：宽带密码（不是集大通行证密码）不正确， </p>
+<p>解决方法：请使用正确的宽带密码绑定宽带。</p>
+<p>在绑定时报错：说明是可能是输入错误，也可能发生了变更，请按照上文的方法正确获取宽带密码，或者打电话、前往营业厅。</p>
+<p>在认证时报错：移动专属问题，移动系统将用户密码重置变更了，解决方法：</p>
+<p>2019年9月底移动重置了新卡的宽带密码，导致认证出错，需要下文的方法进入网上营业厅重新绑定后方可正常登录。</p>
+<p>使用移动宽带校园网，认证时提示Invalid password怎么办？</p>
+<ol>
+<li><p>用那张移动卡发送短信 401#手机号# 到 10086 重置宽带密码。</p>
+</li>
+<li><p>你将获得新宽带密码，记下密码。</p>
+</li>
+<li><p>在内网环境下（比如说宿舍网教育网接入，或者在图书馆、机房里使用公用校园网）进入赛尔网络（集大）网上营业厅（必须是电脑版）。</p>
+<p>  方法一：<br>  进入<a target="_blank" rel="noopener" href="http://user.jmu.edu.cn/SelfService/home.aspx">http://user.jmu.edu.cn/SelfService/home.aspx</a></p>
+<p>  方法二：</p>
+</li>
+</ol>
+<p>电脑端：搜索集美大学信息化中心官网，接着再点击学生宿舍网进入。<br>手机端：进入集大通/OpenJMU里的网费充值/网上营业厅后再点击下面的”电脑版”进入。 </p>
+<ol start="4">
+<li><p>输入集大通行证的账号和密码，然后点开账号管理-宽带绑定，点击解除绑定，接着再点击宽带绑定，选择移动-输入移动手机号和新的宽带密码-输入两遍，再点击绑定即可！</p>
+</li>
+<li><p>在宿舍里先下线一下再进行移动宽带认证，浏览器地址栏输入10.8.2.2进入点击下线后再重新认证，选择移动宽带接入，用客户端在客户端里点下线再选移动接入，使用自动登录路由器的重启路由器。</p>
+</li>
+</ol>
+<h2 id="RADIUS-0020-Wired-service-disabled"><a href="#RADIUS-0020-Wired-service-disabled" class="headerlink" title="RADIUS-0020:Wired service disabled"></a>RADIUS-0020:Wired service disabled</h2><blockquote>
+<p>解释：联网服务禁用。</p>
+</blockquote>
+<p>解决方法：电信专属问题，可能是宽带没有激活，或者是手机卡套餐里没有宽带服务，请前往电信营业厅说绑定（或者认证时）时遇到了0020报错，把截图给工作人员看工作人员。</p>
+<h2 id="RADIUS-0024-User-name-or-service-inexistent"><a href="#RADIUS-0024-User-name-or-service-inexistent" class="headerlink" title="RADIUS-0024: User name or service inexistent."></a>RADIUS-0024: User name or service inexistent.</h2><p>解释：用户名或服务不存在。<br>解决方法：请检查是否输入了正确的宽带账号，以及该账户是否开通了宽带业务。 </p>
+<h2 id="RADIUS-0025-Service-unavailable"><a href="#RADIUS-0025-Service-unavailable" class="headerlink" title="RADIUS-0025: Service unavailable."></a>RADIUS-0025: Service unavailable.</h2><blockquote>
+<p>解释：服务不可用。</p>
+</blockquote>
+<p>解决方法：请检查宽带账户所属的手机卡是否正常使用、是否停机、是否欠费，另外很大可能是运营商没有开通宽带，请按照上文”准备一个宽带账户”中的解决方法来处理。</p>
+<h2 id="运营商用户认证失败！失败原因-26-User-你的宽带账号-xmjmu-‘s-service-aDSLPPPoEAuthen-1001-is-Locked，-Request-Deny-by-fjfz-cnuinet-net"><a href="#运营商用户认证失败！失败原因-26-User-你的宽带账号-xmjmu-‘s-service-aDSLPPPoEAuthen-1001-is-Locked，-Request-Deny-by-fjfz-cnuinet-net" class="headerlink" title="运营商用户认证失败！失败原因 [26;User(你的宽带账号@xmjmu) ‘s service aDSLPPPoEAuthen(1001) is Locked， Request Deny by fjfz.cnuinet.net ]"></a>运营商用户认证失败！失败原因 [26;User(你的宽带账号@xmjmu) ‘s service aDSLPPPoEAuthen(1001) is Locked， Request Deny by fjfz.cnuinet.net ]</h2><blockquote>
+<p>解释：该用户的宽带认证服务被锁，福建福州中国联通请求拒绝。</p>
+</blockquote>
+<p>解决方法：联通专属问题，大规模爆发于2020年8月。<br>请先检查联通电话卡是否欠费或者被注销（可以用联通营业厅APP查询），如果有请补齐话费或者前往月明楼二楼营业厅申请恢复。话费充值可能会延迟，请等待一段时间再尝试登陆。<br>如果电话卡有话费但是仍然报错，请直接前往联通营业厅，将报错截图给工作人员看，帮忙解决。<br>如果宽带密码被工作人员重置了，请在内网环境下（比如说宿舍网教育网接入，或者在图书馆、机房里使用公用校园网）进入赛尔网络（集大）网上营业厅（必须是电脑版）。</p>
+<p>进入方法：</p>
+<ol>
+<li><p>方法一：<br>直接进入链接：<br><a target="_blank" rel="noopener" href="http://user.jmu.edu.cn/SelfService/home.aspx">http://user.jmu.edu.cn/SelfService/home.aspx</a></p>
+</li>
+<li><p>方法二：<br>电脑端：搜索集美大学信息化中心官网，接着再点击学生宿舍网进入。<br>手机端：进入集大通/OpenJMU里的网费充值/网上营业厅后再点击下面的”电脑版”进入。<br>输入绑定了联通宽带的集大通行证的账号和密码，然后点开账号管理-宽带绑定，如果卡是2019年8月及之后办理的，联通的宽带账号为0592开头，并不是手机号，解除绑定前最好复制一下宽带账号，然后点击解除绑定，接着再点击宽带绑定，选择联通-输入联通宽带账号和新的宽带密码-输入两遍，再点击绑定即可！<br>在宿舍里先下线一下再进行联通宽带接入认证，浏览器地址栏输入10.8.2.2进入点击下线后再重新认证，选择联通宽带接入，用客户端在客户端里点下线再选联通宽带接入，使用自动登录路由器的重启路由器。</p>
+</li>
+</ol>
+<h2 id="运营商用户认证失败！失败原因-29-User-你的宽带账号-xmjmu-‘s-Authen-Attrib-ai-Senvice-Password-Check-Eror-Request-Deny-by-fjfz-cnuninet-net"><a href="#运营商用户认证失败！失败原因-29-User-你的宽带账号-xmjmu-‘s-Authen-Attrib-ai-Senvice-Password-Check-Eror-Request-Deny-by-fjfz-cnuninet-net" class="headerlink" title="运营商用户认证失败！失败原因 [29;User(你的宽带账号@xmjmu) ‘s Authen Attrib(ai-Senvice-Password)Check Eror,Request Deny by fjfz.cnuninet.net ]"></a>运营商用户认证失败！失败原因 [29;User(你的宽带账号@xmjmu) ‘s Authen Attrib(ai-Senvice-Password)Check Eror,Request Deny by fjfz.cnuninet.net ]</h2><blockquote>
+<p>解释：联通的宽带密码错误。</p>
+</blockquote>
+<p>解决方法：联通专属问题</p>
+<ol>
+<li><p>情况一，绑定联通宽带时报错：<br>先检查一下你的宽带密码是否输入错误，联通可能会重置宽带密码，请直接前往联通营业厅咨询宽带密码后再绑定。</p>
+</li>
+<li><p>情况二，认证联通宽带接入时报错：<br>说明宽带密码被重置了，请直接前往联通营业厅咨询新的宽带密码。</p>
+</li>
+</ol>
+<p>绑定：进入网上营业厅电脑版，输入绑定了联通宽带的集大通行证的账号和密码，然后点开账号管理-宽带绑定，如果卡是2019年8月及之后办理的，联通的宽带账号为0592开头，并不是手机号，解除绑定前最好复制一下宽带账号，然后点击解除绑定，接着再点击宽带绑定，选择联通-输入联通宽带账号和新的宽带密码-输入两遍，再点击绑定即可！</p>
+<h2 id="运营商用户认证失败！失败原因-User-status-error"><a href="#运营商用户认证失败！失败原因-User-status-error" class="headerlink" title="运营商用户认证失败！失败原因 [User status error ]"></a>运营商用户认证失败！失败原因 [User status error ]</h2><blockquote>
+<p>解释：用户状态错误</p>
+</blockquote>
+<p>解决方法：移动专属问题，大规模爆发于2020年9月之后，请直接前往移动营业厅，把报错截图给工作人员看解决。</p>
+<p>如果宽带密码被重置了，请：</p>
+<p>进入赛尔网络（集大）网上营业厅（必须是电脑版）。<br>进入方法： </p>
+<ol>
+<li><p>方法一：<br>进入 <a target="_blank" rel="noopener" href="http://user.jmu.edu.cn/SelfService/home.aspx">http://user.jmu.edu.cn/SelfService/home.aspx</a></p>
+</li>
+<li><p>方法二：<br>电脑端：搜索集美大学信息化中心官网，接着再点击学生宿舍网进入。<br>手机端：进入集大通/OpenJMU里应用中心的网费充值/网上营业厅后再点击下面的”电脑版”进入。<br>④输入集大通行证的账号和密码，然后点开账号管理-宽带绑定，点击解除绑定，接着再点击宽带绑定，选择移动-输入移动手机号和新的宽带密码-输入两遍，再点击绑定即可！</p>
+</li>
+</ol>
+<h2 id="绑定宽带时：运营商账号校验超时，请稍后再试！"><a href="#绑定宽带时：运营商账号校验超时，请稍后再试！" class="headerlink" title="绑定宽带时：运营商账号校验超时，请稍后再试！"></a>绑定宽带时：运营商账号校验超时，请稍后再试！</h2><h2 id="认证时：无反应，或者提示-认证设备相应超时，请稍后再试！"><a href="#认证时：无反应，或者提示-认证设备相应超时，请稍后再试！" class="headerlink" title="认证时：无反应，或者提示 认证设备相应超时，请稍后再试！"></a>认证时：无反应，或者提示 认证设备相应超时，请稍后再试！</h2><blockquote>
+<p>解释：联通认证服务器无响应</p>
+</blockquote>
+<p>解决方法：联通专属问题，集美大学的联通服务器老旧，经常性抽风，等待恢复。</p>
+<h2 id="空宽带"><a href="#空宽带" class="headerlink" title="空宽带"></a>空宽带</h2><blockquote>
+<p>空宽带问题：办理了校园宽带，也绑定成功了宽带，也认证成功了，但是查IP显示是教育网的IP，测速也是教育网的速度，只有1Mbps，很卡，等于说宽带接入是空的，实际上用了教育网接入；这个问题的威力在于，绑定认证都是很正常的，没有任何的报错提示，然而在使用的时候会感到非常卡顿，用户往往会不知所措；</p>
+</blockquote>
+<blockquote>
+<p>解释：这个说明是宽带加速包的问题，运营商没有弄好，经常会出现在移动宽带上（办理了超过标称50M的宽带或者非集大校园宽带）。</p>
+</blockquote>
+<p>解决方法：前往校内的营业厅，描述清楚问题，就说已经绑定成功了宽带，也认证成功了宽带，测速查IP还是教育网的，最好出示一下测速截图、查IP截图，叫工作人员帮忙解决一下，或者直接打电话给电信客服。</p>
+<h3 id="网站分享"><a href="#网站分享" class="headerlink" title="网站分享"></a>网站分享</h3><ol>
+<li> <strong>网费充值<a target="_blank" rel="noopener" href="http://user.jmu.edu.cn/SelfService/Home.aspx">http://user.jmu.edu.cn/SelfService/Home.aspx</a></strong></li>
+<li> <strong>测速网站 <a target="_blank" rel="noopener" href="https://www.speedtest.cn/">https://www.speedtest.cn/</a></strong></li>
+<li> <strong>信息化中心 <a target="_blank" rel="noopener" href="https://net.jmu.edu.cn/">https://net.jmu.edu.cn</a></strong></li>
+<li> <strong>I集大 <a target="_blank" rel="noopener" href="https://i.jmu.edu.cn/">https://i.jmu.edu.cn/</a></strong></li>
+</ol>
+<h2 id="特殊声明"><a href="#特殊声明" class="headerlink" title="特殊声明"></a>特殊声明</h2><p><strong>本文地址</strong>：<a target="_blank" rel="noopener" href="https://billyme.gitee.io/">https://billyme.gitee.io/</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/p/ac1736fe.html">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【Caddy2】最新Caddy2配置文件解析</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/p/d69db4c5.html">
+                        <span class="hidden-mobile">ISS HD Live</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"98T6Seo86MgLR2enaa4jzkqM-9Nh9j0Va","appKey":"m6gb3P43WeGCEhKwI1V5lNkb","placeholder":"说点啥","path":"window.location.pathname","avatar":"retro","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://98t6seo8.lc-cn-e1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"requiredFields":[]},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://www.cnblogs.com/billyme/" target="_blank" rel="nofollow noopener"><span>Billyme</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

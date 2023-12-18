@@ -1,0 +1,475 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/box.svg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Billyme">
+  <meta name="author" content="Billyme">
+  <meta name="keywords" content="">
+  
+    <meta name="google-site-verification" content="M1pjYL5H4acOcAhF75kYnj88TUffEUhKN5uQ1z-jHIk" /><meta name="msvalidate.01" content="094ECD52C4255ECD057DE8C73671632D" /><meta name="baidu-site-verification" content="code-CvaeMLX0t0" />
+  
+  <title>Python灾害预警 - Billyme的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"billyas.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Billyme</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Python灾害预警">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-28 20:38" pubdate>
+        2021年8月28日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      454 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      6
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Python灾害预警</h1>
+            
+            <div class="markdown-body">
+              <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>主要采用requests爬取国家预警中心的API，检测本地灾害预警信息，格式化并推送Qmsg酱（QQ机器人），在服务器端<br>利用Crontab定时执行代码，实现动态监测功能。</p>
+<h2 id="平台"><a href="#平台" class="headerlink" title="平台"></a>平台</h2><ol>
+<li>Linux 平台</li>
+<li>python 3.9</li>
+<li>pip3 (requests)</li>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python3</span><br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> json<br><br><span class="hljs-comment">#qmsg推送函数</span><br><span class="hljs-comment">#详情请查看 https://qmsg.zendee.cn/</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">qmsg_push</span>(<span class="hljs-params">wa</span>):</span><br>    url2 = <span class="hljs-string">&quot;您自己的推送URL&quot;</span><br>    msg = <span class="hljs-string">&#x27;预警:\n&#x27;</span>+<span class="hljs-built_in">str</span>(wa)+<span class="hljs-string">&#x27;@&#x27;</span><br>    params = &#123;<span class="hljs-string">&quot;msg&quot;</span>: msg&#125;<br>    res = requests.post(url2, data=params)<br>    json2 =res.json()<br>    <span class="hljs-keyword">if</span> json2[<span class="hljs-string">&#x27;success&#x27;</span>]== <span class="hljs-literal">True</span> :<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Qmsg酱推送成功&#x27;</span>)<br>            <span class="hljs-built_in">print</span>(res.text)<br>    <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Qmsg酱推送失败&#x27;</span>)<br>            <span class="hljs-built_in">print</span>(res.text)<br><br><br><span class="hljs-comment">#获取预警信息</span><br>url = <span class="hljs-string">&quot;http://www.12379.cn/data/alarm_list_all.html&quot;</span><br>res = requests.post(url,timeout=<span class="hljs-literal">None</span>)<br>res.encoding = <span class="hljs-string">&#x27;utf-8&#x27;</span><br>json2 = res.json()<br>warning=[]<br><span class="hljs-comment">#判断是否有对应城市预警信息已经对应类型</span><br><span class="hljs-comment">#一般预警平台会存在多条信息，第一条是最新的</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> json2[<span class="hljs-string">&#x27;alertData&#x27;</span>]:<br>    <span class="hljs-keyword">if</span> (<span class="hljs-string">&#x27;荔城区&#x27;</span> <span class="hljs-keyword">in</span> i[<span class="hljs-string">&#x27;headline&#x27;</span>] <span class="hljs-keyword">or</span> <span class="hljs-string">&#x27;荔城区&#x27;</span> <span class="hljs-keyword">in</span> i[<span class="hljs-string">&#x27;description&#x27;</span>]) <span class="hljs-keyword">and</span> <span class="hljs-string">&#x27;暴雨&#x27;</span> <span class="hljs-keyword">in</span> i[<span class="hljs-string">&#x27;headline&#x27;</span>]:<br>        warning.append(i[<span class="hljs-string">&#x27;description&#x27;</span>])<br>        <span class="hljs-keyword">break</span><br><span class="hljs-comment">#无预警退出</span><br><span class="hljs-comment">#有预警格式化并推送信息</span><br><span class="hljs-keyword">if</span>  warning==[] :<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;无预警&#x27;</span>)<br><span class="hljs-keyword">else</span>:<br>    wa = json.dumps(warning,ensure_ascii=<span class="hljs-literal">False</span>)<br>    <span class="hljs-built_in">print</span>(wa)<br>    qmsg_push(wa)<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="服务器部署"><a href="#服务器部署" class="headerlink" title="服务器部署"></a>服务器部署</h2><ol>
+<li>Linux服务器</li>
+<li>Python3</li>
+<li>pip3安装requests<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">pip3 install requests<br></code></pre></td></tr></table></figure></li>
+<li>创建文件<br>利用VIM或其他编辑器，写入代码到<code>yujing</code>文件内，添加执行权限。<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">chmod +x yujing<br></code></pre></td></tr></table></figure></li>
+<li>定时脚本<br>Crontab设置定时任务<br>找到<code>yujing</code>文件位置,比如<code>/root/yujing</code>,新建一个<code>log</code>文件 然后<code>cronrab -e</code>进入编辑输入以下命令<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">*<span class="hljs-regexp">/60 * * * * /</span>root/yy &gt; <span class="hljs-regexp">/root/</span>log<br></code></pre></td></tr></table></figure></li>
+<li>查看日志<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">cat <span class="hljs-regexp">/root/</span>log<br></code></pre></td></tr></table></figure>
+<h2 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h2></li>
+</ol>
+<p><img src="https://img2020.cnblogs.com/blog/2028247/202108/2028247-20210805162548072-1769306353.png" srcset="/img/loading.gif" lazyload alt="image"><br><a target="_blank" rel="noopener" href="https://b23.tv/D9RVpE">bilibili演示地址</a></p>
+<iframe src="//player.bilibili.com/player.html?aid=419673968&bvid=BV1m3411r7cu&cid=383106545&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="900px" height="600px"> </iframe>
+
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>本文为Billyme原创，不允许任何形式的转载，本文地址<a target="_blank" rel="noopener" href="https://www.cnblogs.com/billyme/p/15104031.html%E3%80%82">https://www.cnblogs.com/billyme/p/15104031.html。</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/p/d69db4c5.html">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ISS HD Live</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/p/36423e12.html">
+                        <span class="hidden-mobile">博客介绍</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"98T6Seo86MgLR2enaa4jzkqM-9Nh9j0Va","appKey":"m6gb3P43WeGCEhKwI1V5lNkb","placeholder":"说点啥","path":"window.location.pathname","avatar":"retro","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://98t6seo8.lc-cn-e1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"requiredFields":[]},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://www.cnblogs.com/billyme/" target="_blank" rel="nofollow noopener"><span>Billyme</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
